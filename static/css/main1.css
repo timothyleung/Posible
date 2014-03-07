@@ -1,6 +1,15 @@
 @charset "UTF-8";
 /* CSS Document */
 
+@font-face {
+    font-family: "Aracne Regular";
+    src:url(../font/aracne/ARACNE_regular.ttf) format("truetype");
+}
+@font-face {
+    font-family: "League Gothic";
+    src:url(../font/theleagueof-league-gothic-64c3ede/webfonts/leaguegothic-regular-webfont.ttf) format("truetype");
+}
+
 body{
 	font-family:sans-serif;
 	color:#54be98;
@@ -68,7 +77,7 @@ div div a:hover{
 }
 
 .companyname{
-	font-family: League Gothic;
+	font-family: "League Gothic";
 	font-size:30px;
 	color:#FFF;
 	text-shadow:0 1px 0 #666;
@@ -189,7 +198,7 @@ div span:hover{
 
 p, h3{
 	color:#000;
-	font-family: Aracne Regular;
+	font-family: "Aracne Regular";
 }
 
 .login-panel{
