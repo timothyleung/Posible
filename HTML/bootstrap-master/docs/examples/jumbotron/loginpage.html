@@ -1,0 +1,233 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+<link rel="shortcut icon" href="Icon/icon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="bootstrap.js"></script>
+ 	<link href="admin.css" rel="stylesheet">
+<!-- Javascript for Clock -->
+<script>
+function startTime()
+{
+var today=new Date();
+var y=today.getFullYear();
+var d=today.getDate();
+var h=today.getHours();
+var m=today.getMinutes();
+var s=today.getSeconds();
+var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ];
+var wdNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+// add a zero in front of numbers<10
+m=checkTime(m);
+s=checkTime(s);
+document.getElementById('txt').innerHTML= wdNames[today.getDay()]+", "+monthNames[today.getMonth()]+" "+d+", "+y+"<br>"+ "<div class=\"time\">" +h+":"+m+":"+s +"</div>";
+t=setTimeout(function(){startTime()},500);
+}
+
+function checkTime(i)
+{
+if (i<10)
+  {
+  i="0" + i;
+  }
+return i;
+}
+</script>
+    
+<title>POSible WebAdmin</title>
+</head>
+
+<body onload="startTime()">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+ 
+             <a class="navbar-brand" href="#"><img class="top" src="logo.gif" alt="POSible" width="30"/>  POSible</a>
+         <div class="nav-menu">
+       <img src="profile.jpg" class="img-thumbnail"> 
+       <div class="dropdown">
+		  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Natalie Leung<b class="caret"></b></a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="right: 0; left: auto;">
+
+<div class="progress-bar-info">
+  <h5>NATALIE LEUNG</h5>
+  </div>
+  <div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+  32 hours to go
+  </div>
+</div>
+  <div class="navbar-brand-smalltext">
+  Level 6 (<a style="cursor: help; " data-toggle="modal" data-target=".bs-example-modal-sm">?</a>) 
+  <br>
+  Accumulated Hours: 1240 Hours
+  </div>
+
+   <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> <span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-cog"></span> Account Settings</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-user"></span> Manage Profile</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="testcode.html"><span class="glyphicon glyphicon-off"></span> Sign Out</a></li>
+  </ul>
+</div>
+       </div>
+   		</div>
+       </div>
+      </div>
+</div>
+
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h5 class="modal-title"><span class="glyphicon glyphicon-question-sign"></span> What is Worker Scoring System?</h5>
+      </div>
+      <div class="modal-body">
+        <p>This is a system that calculates your total working hours. The more you work, the more likely your employer is going to reward you. Your employer will be notified whenever you reach one level. Get ready to be surprised!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Alert Message--> 
+<div class="alert alert-success alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong>Congratulations! </strong> You have been promoted! 
+</div>
+
+<div class="subcontainer">
+<section>
+<aside id="txt" class="c1"></aside>
+<aside class="clockinout"><a class="clockbtn btn" href="#" role="button"><span class="glyphicon glyphicon-log-in"></span> Clock In</a><br><a class="clockbtn btn" href="#" role="button"><span class="glyphicon glyphicon-log-out"></span> Clock Out</a></aside>
+</section>
+
+
+<!---------weekly timeslot---->
+<div class="weeklytime">
+<table border="1">
+<tr>
+  <td>Day 0</a></td>
+  <td>Day 1</a></td>
+  <td>Day 2</a></td>
+  <td>Day 3</a></td>
+  <td>Day 4</a></td>
+  <td>Day 5</a></td>
+  <td>Day 6</a></td>
+</tr>
+</table>
+<ul class="nav nav-pills">
+<li class="dropdown">
+  <a href="#" data-toggle="dropdown" class="dropdown-toggle"></a>
+	<ul class="dropdown-menu" id="menu1">
+    <li>12:00 - 23:00</li>
+    <li>Break:</li>
+    <li>16:00 -17:00</li>
+    <li class="divider"></li>
+    <li><a href="#" alt="Swap"><span class="glyphicon glyphicon-refresh"></span> Swap</a></li>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <a href="#" data-toggle="dropdown" class="dropdown-toggle"></a>
+	<ul class="dropdown-menu" id="menu1">
+    <li>12:00 - 23:00</li>
+    <li>Break:</li>
+    <li>16:00 -17:00</li>
+    <li class="divider"></li>
+    <li><a href="#" alt="Swap"><span class="glyphicon glyphicon-refresh"></span> Swap</a></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" data-toggle="dropdown" class="dropdown-toggle"></a>
+	<ul class="dropdown-menu" id="menu1">
+    <li>12:00 - 23:00</li>
+    <li>Break:</li>
+    <li>16:00 -17:00</li>
+    <li class="divider"></li>
+    <li><a href="#" alt="Swap"><span class="glyphicon glyphicon-refresh"></span> Swap</a></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" data-toggle="dropdown" class="dropdown-toggle"></a>
+	<ul class="dropdown-menu" id="menu1">
+    <li>12:00 - 23:00</li>
+    <li>Break:</li>
+    <li>16:00 -17:00</li>
+    <li class="divider"></li>
+    <li><a href="#" alt="Swap"><span class="glyphicon glyphicon-refresh"></span> Swap</a></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" data-toggle="dropdown" class="dropdown-toggle"></a>
+	<ul class="dropdown-menu" id="menu1">
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" data-toggle="dropdown" class="dropdown-toggle"></a>
+	<ul class="dropdown-menu" id="menu1">
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" data-toggle="dropdown" class="dropdown-toggle"></a>
+	<ul class="dropdown-menu" id="menu1">
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</li>
+</ul>
+</div>
+
+<!--tab-->
+<div class="subcontainer">
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+  <li><a href="#profile" data-toggle="tab">Profile</a></li>
+  <li><a href="#messages" data-toggle="tab">Messages</a></li>
+  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="home"> 
+  Compressed and uncompressed copies of jQuery files are available. The uncompressed file is best used during development or debugging; the compressed file saves bandwidth and improves performance in production. You can also download a sourcemap file for use when debugging with a compressed file. The map file is not required for users to run jQuery, it just improves the developer's debugger experience. 
+  </div>
+  <div class="tab-pane fade" id="profile">I</div>
+  <div class="tab-pane fade" id="messages">DID</div>
+  <div class="tab-pane fade" id="settings">IT!</div>
+</div>
+
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show')
+  })
+</script>
+</div>
+
+
+</div>
+</body>
+</html>

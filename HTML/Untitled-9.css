@@ -1,0 +1,335 @@
+// Variables
+@bg-blue-lt:#3C5C7B;
+@bg-blue-dk:#0F2437;
+
+@main-blue-lt:#1C3852;
+@main-blue-dk:#041627;
+
+@txt-col-dk:#444444;
+@txt-col-lt:#eee;
+
+@transform-rotate:rotateX(180deg);
+@transform-zoom:translateX(1000px);
+@transform-launch:translateY(-2000px);
+
+@invalid-col:#CD4854;
+
+// Font Awesome (better: more glyphs, more free-ness)
+.fonticon {
+	font-family:'FontAwesome';
+	font-style:normal;
+	font-weight:normal;
+	line-height:1;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+
+// Display icons automatically
+[data-icon]:before {
+  font-family:'FontAwesome';
+  // BYO icon font, mapped smartly
+  content: attr(data-icon)" ";
+  speak: none; // Not to be trusted
+  &:extend(.fonticon);
+}
+
+// Gradient mixin
+.grad(@start-col:@main-blue-lt;@end-col:@main-blue-dk;){
+  background-image:linear-gradient(@start-col,@end-col);
+  box-shadow:inset 0px -1px 0px 0px rgba(0,0,0,0.20), inset 0 0 2px 0 rgba(255,255,255,0.50);
+  color:contrast(@main-blue-dk,@txt-col-dk,@txt-col-lt);
+}
+
+a {
+  color:@main-blue-lt;
+  text-decoration:none;
+  &:hover {
+    text-decoration:underline;
+  }
+}
+
+
+.container {
+  display:-webkit-flex;
+  height:100%;
+  // 3D Animation attributes
+  transform: perspective(1800px);
+  transform-style: preserve-3d;
+  overflow:hidden;
+  //perspective-origin: 50% 50%;
+}
+
+.flex-centered {
+  // Absolute centering with flexbox
+  margin:auto;
+}
+
+.login-pane {
+  // Now style
+  box-shadow:0 5px 20px rgba(0,0,0,0.8);
+  // Now deal with the 3D transform
+  transform-style: preserve-3d;
+  //transform: rotateY(0deg);
+  transition:transform 0.4s ease-in;
+  position:relative;
+  .inner-wrap {
+    backface-visibility:hidden;
+    &.front-face {
+      position:relative;
+      z-index:2;
+    }
+    &.back-face {
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      transform: @transform-rotate translateZ(1px);
+      z-index:1;
+      background:white;
+    }
+  }
+  // Activate the logged-in transform
+  .logged-in & {
+    transform:@transform-launch;
+    transition:transform 0.5s ease-in;
+  }
+  // Activate the password reset transform
+  .flip & {
+    transform:@transform-rotate;
+    transition:transform 0.5s linear;
+  }
+  // Activate the email submit transform
+  .zoom & {
+    transform:@transform-rotate @transform-zoom;
+    transition:transform 0.3s ease-in;
+  }
+  // Deal with the h1
+  h1,
+  h2 {
+    font-size:16px;
+    margin:0;
+    padding:(@space-em * 1.5) (@space-px * 3);
+    .grad();
+    color:lighten(@main-blue-lt,10%);
+    text-align:center;
+    text-shadow:0 -1px 1px rgba(0,0,0,0.7);
+  }
+  // Now the form elements
+  form {
+    .row {
+      .grad(#f4f4f4;#e4e4e4;);
+    }
+  }
+  fieldset {
+    border:none;
+    padding:0;
+    margin:0;
+  }
+  legend {
+    .visuallyhidden;
+  }
+  .form-group {
+    padding:@space-em (@space-px * 3);
+    display:table;
+    font-size:14px;
+    color:@txt-col-dk;
+  }
+  label,
+  input,
+  button,
+  a {
+    display:table-cell;
+  }
+  label {
+    text-shadow:0 1px 0px rgba(255,255,255,0.8);
+    display:inline-block;
+    width:75px;
+  }
+  input {
+    border-radius:2px;
+    border:1px solid #bbb;
+    padding:@space-em;
+  }
+  button {
+    &[type="submit"] {
+      display:block;
+      width:100px;
+      border:1px solid darken(@main-blue-dk,10%);
+      .grad();
+      padding:@space-em 0;
+      border-radius:2px;
+      margin:0 (@space-em * 3) 0 0;
+    }
+  }
+  // a
+  .flip-pane {
+    font-size:12px;
+  }
+  p {
+    margin:@space-em 0;
+    font-size:12px;
+  }
+}
+
+// The Reset Success message
+.success-msg {
+  position:absolute;
+  top:-99999px;
+  left:-99999px;
+  opacity:0;
+  width:300px;
+  color:lighten(@main-blue-lt,48%);
+  text-shadow:0 1px 1px @main-blue-dk;
+  p {
+    font-size:14px;
+    margin:@space-em 0;
+  }
+  a {
+    color:lighten(@main-blue-lt,56%);
+    text-decoration:none;
+    font-weight:bold;
+    &:hover {
+      text-decoration:underline;
+    }
+  }
+  // Now show it when the "zoom" is activated
+  .zoom & {
+    position:static;
+    opacity:1;
+    transition:opacity 0.8s 0.4s ease-in;
+  }
+}
+
+input {
+  &:invalid {
+    background:lighten(@invalid-col,30%);
+  }
+}
+
+// Now style the application-menu
+.app-controls {
+  position:fixed;
+  top:-200px;
+  left:0;
+  right:0;
+  transition:top 1s ease-out;
+  .logged-in & {
+    top:0;
+    transition:top 1s ease-in;
+  }
+}
+
+.main-menu {
+  ul {
+    padding:@space-em 0;
+    margin:@space-em (@space-em * 2);
+    list-style:none;
+    li {
+      width:(100% / 6);
+      float:left;
+      a {
+        display:block;
+        width:auto;
+        text-align:center;
+        position:relative;
+        color:lighten(@main-blue-lt,20%);
+        text-shadow:0 1px 1px rgba(0,0,0,0.8);
+        &:hover {
+          color:lighten(@main-blue-lt,40%);
+          text-decoration:none;
+          font-weight:bold;
+        }
+        // Temporary indicators that nothing lives here. Fun, nonetheless: using pseudo-elements, data-attributes and the :not selector
+        &:not(.log-out) {
+          //&:before,
+          &:after {
+            position:absolute;
+            left:50%;
+            opacity:0;
+            transition:opacity 0.4s ease-out;
+          }
+          /*&:before {
+            content:"";
+            border:8px solid transparent;
+            border-bottom-color:black;
+            bottom:-8px;
+            margin-left:-8px;
+          }*/
+          &:after {
+            content:attr(data-tooltip);
+            width:200px;
+            margin-left:-100px;
+            bottom:-29px;
+            font-size:11px;
+            background:black;
+            //opacity:0;
+            color:white;
+            padding:@space-em (@space-em * 2);
+            border-radius:4px;
+          }
+          &:hover {
+            //&:before,
+            &:after {
+              opacity:0.6;
+              transition:opacity 0.4s ease-in;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.welcome-msg {
+  position:absolute;
+  left:50%;
+  top:700%;
+  color:lighten(@bg-blue-lt,15%);
+  text-shadow:0 1px 1px rgba(255,255,255,0.5);
+  opacity:0;
+  width:400px;
+  margin-left:-200px;
+  text-align:center;
+  transition:top 0.4s ease-out;
+  .grad();
+  color:transparent;
+  -webkit-background-clip:text;
+  box-shadow:none;
+  h1 {
+    margin:0;
+  }
+  .logged-in & {
+    top:40%;
+    opacity:0.9;
+    transition:0.4s ease-in;
+  }
+}
+
+// Boring but important
+html {
+  height:100%;
+}
+
+body {
+  height:100%;
+  position:relative;
+  background-image: radial-gradient(closest-side, @bg-blue-lt,@bg-blue-dk);
+}
+
+// Helper variables
+@space-em:0.4em;
+@space-px:4px;
+
+// Helper mixins
+.visuallyhidden() {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	text-indent:-9999px;
+}
